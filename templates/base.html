@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aromatic89</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="google-site-verification" content="ox9i512T76tBJWnfMX0fbm1Ra1nzdb_dDYYFcIu8whg" />
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=cyrillic" rel="stylesheet"> -->
+
+    <!-- Custom stylefses -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400&display=swap&subset=cyrillic" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600i&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600i&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600i&display=swap&subset=cyrillic" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:500i&display=swap&subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300i&display=swap&subset=cyrillic" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Pattaya&display=swap&subset=cyrillic" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=cyrillic" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Forum&display=swap&subset=cyrillic" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href='{% static 'css/style.css' %}' type='text/css' rel='stylesheet'>
+    <link href='{% static 'css/landing.css' %}' type='text/css' rel='stylesheet'>
+    <link rel="icon" href='{% static 'img/aromatic89_logo_title.png' %}'>
+    <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+
+</head>
+<body>
+    <!-- jQuery -->
+
+    <script src="{% static "js/jq_validation/jv/dist/jquery.validate.js" %}"></script>
+
+    <script src="{% static "js/parallax.js" %}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+
+    <script src="{% static "js/scripts.js" %}"></script>
+    <script src="{% static "js/bootstrap-input-spinner.js" %}"></script>
+    <script src="{% static "js/bootstrap-show-modal.js" %}"></script>
+
+    <div id="parallax_test" class="parallax-window" data-parallax="scroll" data-speed='0.0' data-image-src="{% static 'img/big_test(compressed).jpg' %}">
+    <div class='wrapper'>
+      <div class='wrapper-content'>
+
+
+        {% block content %}
+        {% endblock content %}
+
+      </div>
+
+
+    </div>
+
+      {% include 'footer.html' %}
+
+
+
+
+
+</body>
+</html>

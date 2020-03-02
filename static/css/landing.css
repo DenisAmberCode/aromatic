@@ -1,0 +1,83 @@
+/* @font-face {
+  font-family: 'Cormorant Garamond', sans-serif;
+  src: url('../fonts/garamond/CormorantGaramond-SemiBold.ttf'),
+      url('../fonts/garamond/CormorantGaramond-Bold.ttf'),
+      url('../fonts/garamond/CormorantGaramond-BoldItalic.ttf'),
+      url('../fonts/garamond/CormorantGaramond-Italic.ttf'),
+      url('../fonts/garamond/CormorantGaramond-Light.ttf'),
+      url('../fonts/garamond/CormorantGaramond-LightItalic.ttf'),
+      url('../fonts/garamond/CormorantGaramond-Medium.ttf'),
+      url('../fonts/garamond/CormorantGaramond-Regular.ttf'),
+      url('../fonts/garamond/CormorantGaramond-MediumItalic.ttf'),
+      url('../fonts/garamond/CormorantGaramond-SemiBoldItalic.ttf');
+  font-weight: 600;
+
+} */
+
+html,body{
+    height: 100%;
+    max-height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.center{
+  color: white;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 10%;
+
+}
+
+@media (max-width: 800px){
+  .center{
+    color: white;
+    text-align: center;
+    font-weight: 300;
+    margin-top: 22%;
+  }
+}
+
+.beautiful{
+  color: orange;
+  font-family: fantasy;
+}
+
+.top-container{
+    padding-top: 10%;
+}
+
+.general-container{
+  background: url('../img/bg-img2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+/*  overflow: scroll; */
+  height: 100%;
+  color: black;
+  font-weight: 300!important;
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg-img2.jpg', sizingMethod='scale')";   /* нормальный зум для edge и ддругих всратышей */
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg-img2.jpg', sizingMethod='scale')";
+}
+
+.general-container form{
+  margin-top: 5%;
+}
+
+.general-container form label{
+  font-weight: 300;
+}
+
+.btn-color{
+  background-color: #e8643e;
+  border: none;
+}
+
+.btn-color:hover{
+  background-color: #dc5129;
+  border: none;
+}

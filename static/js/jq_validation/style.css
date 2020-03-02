@@ -1,0 +1,16 @@
+.content{
+	margin-top: 50px;
+}
+.red{
+	color: #ff0000;
+}
+.form-control-feedback{
+	right: 10px;
+}
+input.error {
+	border: 1px solid #ff0000;
+}
+label.error {
+	color: #ff0000;
+	font-weight: normal;
+}

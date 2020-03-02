@@ -1,0 +1,88 @@
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <a class="navbar-brand color-home " href="/">
+    <img src="{% static 'img/aromatic89_logo.png' %}">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" data-toggle="collapse" data-target=".navbar-collapse.show">
+    <ul  class="navbar-nav ml-auto text-right">
+      <li class="nav-item active ">
+        <a  class="nav-link" href="#parallax_test">Test naverh</a>
+      </li>
+      <li class="nav-item active">
+        <a  class="nav-link" href="#footer1" >Test vniz</a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Action</a>
+          <a class="dropdown-item" href="">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="basket-container">
+          {% if products_total_nmb %}
+            <a href="{% url 'checkout' %}" style="text-decoration: none"><img src="{% static 'img/Shopping-basket-2.png' %}" width="40" height="40"></a>
+          {% else %}
+            <a href="{% url 'checkout' %}" style="text-decoration: none"><img id="basket-1" src="{% static 'img/Shopping-basket-1.jpg' %}" width="40" height="40"></a>
+          {% endif %}
+
+        </div>
+      </li>
+
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> -->
+    </ul>
+
+  </div>
+</nav>
+<!-- <nav class="navbar navbar-default navbar-main navbar-fixed-top" role="navigation">
+
+
+
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand color-home " href="/">
+          <img src="{% static 'img/aromatic89_logo.png' %}">
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class=""><a href="#parallax_test" data-toggle="collapse" data-target=".navbar-collapse">main test</a></li>
+          <li><a href="/checkout">Промежуточный</a></li>
+          <li class=""><a href="#footer1" data-toggle="collapse" data-target=".navbar-collapse">footer test</a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+
+            <div class="basket-container">
+              <a href="{% url 'checkout' %}" style="text-decoration: none"><img src="https://pngimage.net/wp-content/uploads/2018/06/иконка-корзины-png-2.png" width="32" height="32"> <span id='basket_total_nmb'>
+                {% if products_total_nmb %}
+                  ({{products_total_nmb}})
+                {% else %}
+                  (0)
+                {% endif %}
+              </span></a>
+            </div>
+
+        </ul>
+      </div>
+    </div>
+  </nav>  -->

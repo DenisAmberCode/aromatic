@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class='col-lg-12'>
+        <h1 class='text-center'>
+          Избранные товары
+        </h1>
+        <hr>
+      </div>
+      {% for product_image in products_images %}
+        {% if product_image.product.id in list_products_in_favorites %}
+          <span>
+            {% include 'landing/product_item_in_favorites.html' %}
+          </span>
+        {% endif %}
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

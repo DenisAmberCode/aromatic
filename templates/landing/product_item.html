@@ -1,0 +1,44 @@
+{% load static %}
+<div class="col-lg-4">
+  <div class="product-item">
+    <div>
+        <img src="{{product_image.image.url}}" class="responsive">
+    </div>
+    <div class="product-image-info product-image-info-home">
+      <h2 class="col-lg-12" style='padding-top: 1%;'>{{ product_image.product.name}} </h2>
+      <!-- <button class="btn fas fa-caret-square-down" style='background-color: transparent; color: white; font-weight: 100; font-size: 2.0rem;' data-toggle="collapse" data-target="#collapse{{product_image.product.id}}" aria-expanded="false" aria-controls="collapse{{product_image.product.id}}"></button> -->
+      <h4 class="collapse" id="collapse{{product_image.product.id}}">
+        {{product_image.product.description}}
+      </h4>
+      <div class="" style="margin-bottom: 4%;">
+        <button class="btn btn-light" style="background-color:transparent; color:white;" type="button" data-toggle="collapse" data-target="#collapse{{product_image.product.id}}" aria-expanded="false" aria-controls="collapse{{product_image.product.id}}">
+          Описание
+        </button>
+      </div>
+      <h4>
+        {{product_image.product.price_with_discount}}  руб.
+      </h4>
+    </div>
+
+    <div>
+      {% if product_image.product.id in list_products_in_basket %}
+        <div class="add-to-card-btn">
+          <a href="#checkout_form"><button id="in_basket"class="btn btn-dark">{% csrf_token %}
+            Добавлено в корзину
+          </button>
+          </a>
+        </div>
+      {% else %}
+        <div id="div{{product_image.product.id}}" class="add-to-card-btn col-8 offset-2" >
+          <button id="id{{product_image.product.id}}" action="{% url 'basket_adding' %}" class="btn btn-light"
+            data-name = "{{ product_image.product.name }}"
+            data-price = "{{ product_image.product.price_with_discount }}"
+          >{% csrf_token %}
+            Добавить в корзину
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <hr style="border-width:5px; border-color:transparent;">
+</div>

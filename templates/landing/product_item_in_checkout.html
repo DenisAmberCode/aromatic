@@ -1,0 +1,78 @@
+{% load static %}
+
+<div class="row product-item item-background-checkout">
+  <div class="col-lg-2">
+      <img src="{{product_image.image.url}}" class="responsive">
+  </div>
+
+  <div id="margin_pc" class="col-lg-6 product-image-info text-left">
+    <input type="hidden" value="{{ product_image.product.id }}" id='product_id' name='product_in_basket{{ product_image.product.id }}'>
+    <h5>{{ product_image.product.name}}</h5>
+    <hr style="border-width:0; color:white; background-color: white; border-color:white;">
+    <h6>{{product_image.product.short_description}}</h6>
+  </div>
+
+
+  <div class="col-lg-3 product-image-info">
+    <hr style="border-width:0; color:white; background-color: white; border-color:white;">
+    <div class="">
+      Цена: <span class="product-price"> {{ product_image.product.price_with_discount }} ₽ </span>
+    </div>
+    <hr>
+
+    <div class="">
+      Количество: <input id='test_sp' type="number" min='1' value="1" style="width:30px;" class="product-in-basket-nmb" name='product_in_basket{{ product_image.product.id }}'>
+    </div>
+    <hr>
+
+    <div class="">
+      Стоимость: <span class="total-product-in-basket-amount"> {{ product_image.product.price_with_discount }} </span><b> ₽</b>
+    </div>
+    <hr>
+
+  </div>
+
+  <div class="col-md-auto text-right">
+    {% for key, value in list_products_in_basket.items %}
+      {% if product_image.product.id == key %}
+        <button id="remove_item{{value}}" class="btn btn-link" action="{% url 'basket_adding' %}">{% csrf_token %}
+          <input type="image" src="{% static 'img/remove_item.png' %}">
+        </button>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+
+</div>
+
+<!-- <div class="col-lg-12 product-item item-background-checkout">
+  <div class="col-lg-4">
+    <a href='{% url 'product' product_image.product.id %}'>
+      <img src="{{product_image.image.url}}" class="responsive">
+    </a>
+  </div>
+  <div class="col-lg-4 product-image-info">
+    <input type="hidden" value="{{ product_image.product.id }}" id='product_id' name='product_in_basket{{ product_image.product.id }}'>
+    <h4>{{ product_image.product.name}}</h4>
+    <input type="number" min='1' value="1" style="width:30px;" class="product-in-basket-nmb" name='product_in_basket{{ product_image.product.id }}'>
+    {% for key, value in list_products_in_basket.items %}
+      {% if product_image.product.id == key %}
+        <button id="remove_item{{value}}" class="btn btn-link" action="{% url 'basket_adding' %}">{% csrf_token %}
+          <input type="image" src="{% static 'img/remove_item.png' %}">
+        </button>
+      {% endif %}
+    {% endfor %}
+
+    <p>
+      {{product_image.product.description|truncatechars_html:155}}
+    </p>
+    <span class="product-price">
+      {{ product_image.product.price_with_discount }}
+    </span>
+    <span class="total-product-in-basket-amount">
+      {{ product_image.product.price_with_discount }}
+    </span>
+
+  </div>
+
+</div> -->

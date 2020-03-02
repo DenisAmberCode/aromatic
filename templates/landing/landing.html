@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>what</title>
+
+
+
+
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400" rel="stylesheet">
+
+    <!-- Custom stylefses -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400&display=swap&subset=cyrillic" rel="stylesheet">
+    <link href='{% static 'css/landing.css' %}' type='text/css' rel='stylesheet'>
+    <link rel="icon" href='{% static 'img/pogchamp.png' %}'>
+
+
+</head>
+<body>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <div class='general-container'>
+        <div class='container top-container'>
+            <div class='row'>
+                <div class='col-lg-8 col-lg-offset-2'>
+                    <h1 class='center'>Оформление заказа<br>
+                    </h1>
+                    <div>
+                        <form action='' method='post' class='form-inline text-center'>{% csrf_token %}
+                            <div class='form-group'>
+                              <label>Email: </label>
+                              <input type='text' name='{{ form.email.name }}' class='form-control'>
+                            </div>
+                            <div class='form-group'>
+                                <label>Name: </label>
+                                <input type='text' name='{{ form.name.name }}' class='form-control'>
+                            </div>
+                                <button type='submit' class='btn btn-primary btn-color'>Отправить</button>
+                                <!--  <input type="button" onclick="clearField()" value="Отправить"> -->
+                        </form>
+
+                    </div>
+                    <!-- <h1 class='center'><a href='{% static 'img/trav.gif' %}'> Че зыришь, работы ведутся</a></h1> -->
+                    <!--<h1 class='center'><a href='https://google.com/'> Че зыришь, работы ведутся</a></h1>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
