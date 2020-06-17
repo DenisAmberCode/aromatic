@@ -4,5 +4,5 @@ Production версию можно посмотреть по адресу - http
 Проект выполнен с использованием следующих технологий:
  - Python3.6/Django3;
  - HTML/CSS/Bootstrap;
- - JavaScript/Jquery;
+ - JavaScript/jQuery/AJAX;
  - SQLite;
