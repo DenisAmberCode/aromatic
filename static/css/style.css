@@ -1,19 +1,5 @@
-/* @font-face {
-  font-family: 'Cormorant Garamond BoldItalic', sans-serif;
-  src: url('../fonts/garamond/CormorantGaramond-SemiBold.ttf'),
-      url('../fonts/garamond/CormorantGaramond-Bold.ttf'),
-      url('../fonts/garamond/CormorantGaramond-BoldItalic.ttf'),
-      url('../fonts/garamond/CormorantGaramond-Italic.ttf'),
-      url('../fonts/garamond/CormorantGaramond-Light.ttf'),
-      url('../fonts/garamond/CormorantGaramond-LightItalic.ttf'),
-      url('../fonts/garamond/CormorantGaramond-Medium.ttf'),
-      url('../fonts/garamond/CormorantGaramond-Regular.ttf'),
-      url('../fonts/garamond/CormorantGaramond-MediumItalic.ttf'),
-      url('../fonts/garamond/CormorantGaramond-SemiBoldItalic.ttf');
-  font-weight: 300;
-
-} */
 html,body{
+    background-color: #cacaca;
     height: 100%;
     max-height: 100%;
     /* font-family: 'Cormorant Garamond', serif; */
@@ -26,8 +12,6 @@ html,body{
     /* overflow: auto; */
     /* overflow-y: hidden; */
     /* -webkit-overflow-scrolling: touch; */
-
-
 }
 
 
@@ -45,9 +29,6 @@ html,body{
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover; */
-
-
-
       /* overflow: hidden;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch; */
@@ -181,14 +162,15 @@ html,body{
 }
 
 .product-item{
-  /*height: 705px;*/
-  max-height: 100%;
-  /* background-color: white; */
-  /*border: 1px solid lightgrey;*/
-  position: relative;
-  margin-bottom: 4%;
-  padding: 10px 0 10px 0;
-  text-align: center;
+    /*height: 705px;*/
+    border-radius: 3%;
+    max-height: 100%;
+    background-color: white;
+    border: 1px solid lightgrey;
+    position: relative;
+    margin-bottom: 4%;
+    padding: 10px 0 10px 0;
+    text-align: center;
 }
 
 .item-background-checkout{
@@ -353,7 +335,7 @@ html,body{
 }
 
 .product-image-info-home{
-  color: white;
+  /*color: white;*/
 }
 
 
@@ -365,31 +347,31 @@ html,body{
   z-index: 1;
 } */
 
-@media (max-width: 374px) {
-  .navbar-main {
-    background-color: red;
-  }
-  /* .parallax-window1 {
-    background-image: url("../img/bg-aromatic-test.jpeg");
-  } */
-  /* .aromatic-bg {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-image: url("../img/bg-aromatic-test.jpeg");
-    opacity: 1;
-    z-index: -1;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+/*@media (max-width: 374px) {*/
+/*  .navbar-main {*/
+/*    background-color: red;*/
+/*  }*/
+/*  !* .parallax-window1 {*/
+/*    background-image: url("../img/bg-aromatic-test.jpeg");*/
+/*  } *!*/
+/*  !* .aromatic-bg {*/
+/*    position: fixed;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*    background-image: url("../img/bg-aromatic-test.jpeg");*/
+/*    opacity: 1;*/
+/*    z-index: -1;*/
+/*    overflow-x: hidden;*/
+/*    overflow-y: scroll;*/
+/*    -webkit-overflow-scrolling: touch;*/
 
-  } */
-}
+/*  } *!*/
+/*}*/
 
 @media (min-width: 800px) {
   #margin_pc{

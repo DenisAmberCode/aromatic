@@ -18,6 +18,10 @@ from django.urls import path, include
 from products import views
 
 urlpatterns = [
-    # path('landing/', views.landing, name='landing'),
     path('product/<product_id>/', views.product, name='product'),
+    path('products/', views.products, name='products'),
+    # path('category/<str:categoryInNavbar>/', views.productsFilterByCategoryInNavbar, name='productsFilterByCategoryInNavbar'),
+    path('category/<str:categoryInNavbar>/<str:category>/<int:page>/', views.productsFilterByCategory, name='productsFilterByCategory'),
+    path('category/<str:categoryInNavbar>/<str:category>/<str:subCategory>/<int:page>/', views.productsFilterBySubCategory, name='productsFilterBySubCategory'),
+    path('carousel/<str:carouselTitle>', views.productsInCarousel, name='productsInCarousel'),
 ]

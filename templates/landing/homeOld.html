@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<script>
+    $( document ).on('click', '#shake', function() {
+      $( "#shake" ).effect( "shake", {distance:4} );
+      $.showModal({title: "Ваша корзина пуста!"});
+    });
+</script>
+
+
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+    <a class="navbar-brand color-home " href="#category1">
+      <img src="{% static 'img/aromatic89_logo.png' %}">
+    </a>
+{#    <div id='shake' class="basket-container">#}
+{#      <img src='{% static 'img/Shopping-basket-1.jpg' %}' width="32" height="32">#}
+{#    </div>#}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto text-right" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <ul class="navbar-nav ml-auto text-right">
+          <!-- <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Товары
+            </a>
+            <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="">Ароматы для дома</a>
+              <a class="dropdown-item" href="">Ароматы для авто</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="">Аромадиффузоры</a>
+            </div>
+          </li> -->
+          <li class="nav-item active ">
+              <a  class="nav-link" href="#category1">Ароматы для дома</a>
+          </li>
+          <li class="nav-item active ">
+              <a  class="nav-link" href="#category2">Ароматы для авто</a>
+          </li>
+          <li class="nav-item active ">
+              <a  class="nav-link" href='#category3'>Аромадиффузоры</a>
+          </li>
+          <li class="nav-item active">
+              <a  class="nav-link" href="#footer1" >Контакты</a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li> -->
+        </ul>
+      </div>
+
+      <div class="basket-container nav-item">
+        <ul class="navbar-nav ml-auto text-right">
+          <li class="nav-item active">
+            {% if products_total_nmb %}
+              <a href="{% url 'checkout' %}" style="text-decoration: none"><img src="{% static 'img/Shopping-basket-2.png' %}" width="32" height="32"></a>
+            {% else %}
+              <div id='shake' class="basket-container">
+                <a style="text-decoration: none">
+                    <img id="basket-1" src="{% static 'img/Shopping-basket-1.jpg' %}" width="32" height="32">
+                    <!-- <img id="basket-1" src="{% static 'img/Shopping-basket-1.jpg' %}" width="40" height="40"> -->
+                </a>
+              </div>
+            {% endif %}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </nav>
+
+
+
+  <div class="section section1">
+    <div class="container">
+      <div class="row">
+        <div id='category1' class='col-lg-12'>
+          <h1 class='center'>
+            Ароматы для дома
+          </h1>
+          <hr style="border-width:5px; border-color:transparent;">
+        </div>
+        {% for product_image in products_images_category_1 %}
+          {% include 'landing/product_item.html' %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="section section2">
+    <div class="container">
+      <div class="row">
+        <div id='category2' class='col-lg-12'>
+          <h1  class='center'>
+            Ароматы для авто
+          </h1>
+          <hr style="border-width:5px; border-color:transparent;">
+        </div>
+        {% for product_image in products_images_category_2 %}
+          {% include 'landing/product_item.html' %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section section3">
+    <div class="container">
+      <div class="row">
+        <div id='category3' class='col-lg-12'>
+          <h1 style="font-size: 2.0rem;" class='center'>
+            Аромадиффузоры
+          </h1>
+          <hr style="border-width:5px; border-color:transparent;">
+        </div>
+        {% for product_image in products_images_category_3 %}
+          {% include 'landing/product_item.html' %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+    <div id="root">
+
+</div>
+
+
+{% endblock %}

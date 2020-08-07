@@ -1,13 +1,47 @@
-{% extends 'base.html' %}
-{% load static %}
+    {% extends 'base.html' %}
+    {% load static %}
 
-{% block content %}
-  <div class='container'>
+    {% block content %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+      <a class="navbar-brand color-home " href="/">
+        <img src="{% static 'img/aromatic89_logo.png' %}">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <ul  class="navbar-nav ml-auto text-right">
+          <!-- <li class="nav-item active ">
+            <a  class="nav-link" href="#parallax_test">Test naverh</a>
+          </li> -->
+          <li class="nav-item active">
+            <a  class="nav-link" href="#footer1" >Контакты</a>
+          </li>
+
+          <li class="nav-item">
+            <div class="basket-container">
+                <a href="{% url 'checkout' %}" style="text-decoration: none"><img src="{% static 'img/Shopping-basket-2.png' %}" width="32" height="32"></a>
+            </div>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li> -->
+        </ul>
+
+      </div>
+    </nav>
+
+    <hr>
+    <hr>
+    <hr>
+
+    <div class='container'>
     <div class='row'>
       <div class='col-lg-6'>
         {% for image_item in product.productimg_set.all %}
           <div class='product-image-item'>
-
             <img src='{{ image_item.image.url }}' class='img-responsive'>
           </div>
         {% endfor %}
@@ -54,23 +88,42 @@
 
 
           <div class="form-inline ">
+{#            <div class="form-group">#}
+{#              <form id="form_buying_product" class="form-inline margin-top-15" action="{% url 'basket_adding' %}">{% csrf_token %}#}
+{#                <div class="form-group">#}
+{#                  <input type="number" min='1' class="form-control product-in-basket-nmb" name="number" id="number">#}
+{#                </div>#}
+{##}
+{#                <div class="form-group">#}
+{#                  <button type="submit" id="submit_btn" class="btn btn-dark btn-buy"#}
+{#                    data-product_id = "{{ product.id }}"#}
+{#                    data-name = "{{ product.name }}"#}
+{#                    data-price = "{{ product.price_with_discount }}"#}
+{#                  >#}
+{#                    Добавить в корзину#}
+{#                  </button>#}
+{#                </div>#}
+{##}
+{#              </form>#}
+{#            </div>#}
             <div class="form-group">
-              <form id="form_buying_product" class="form-inline margin-top-15" action="{% url 'basket_adding' %}">{% csrf_token %}
-                <div class="form-group">
-                  <input type="number" min='1' class="form-control" name="number" id="number">
+              {% if product.id in list_products_in_basket %}
+                <div class="add-to-card-btn">
+                  <a href="#checkout_form"><button id="in_basket"class="btn btn-secondary">{% csrf_token %}
+                    Добавлено в корзину
+                  </button>
+                  </a>
                 </div>
-
-                <div class="form-group">
-                  <button type="submit" id="submit_btn" class="btn btn-success btn-buy"
-                    data-product_id = "{{ product.id }}"
+              {% else %}
+                <div id="div{{product.id}}" class="add-to-card-btn" >
+                  <button id="id{{product.id}}" action="{% url 'basket_adding' %}" class="btn btn-dark"
                     data-name = "{{ product.name }}"
                     data-price = "{{ product.price_with_discount }}"
-                  >
-                    Купить
+                  >{% csrf_token %}
+                    Добавить в корзину
                   </button>
                 </div>
-
-              </form>
+              {% endif %}
             </div>
             <div class="form-group">
               {% if product.id in list_products_in_favorites %}
@@ -93,5 +146,5 @@
         </div>
       </div>
     </div>
-  </div>
-{% endblock %}
+    </div>
+    {% endblock %}

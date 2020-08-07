@@ -35,15 +35,13 @@
   </div>
 </nav>
 
-<!-- <div id="parallax_test" class="parallax-window" data-parallax="scroll" data-speed='0.0' data-image-src="{% static 'img/big_test.jpg' %}"> -->
 
 <div class="bg-grey">
-
 
   <div class="container" id="checkout_form">
 
     {% if products_total_nmb > 0 %}
-        <form id="form_check" action="{% url 'checkoutprocess' %}">{% csrf_token %}
+        <form id="form_check" method="post" action="{% url 'checkoutprocess' %}">{% csrf_token %}
           <div class="row">
             <div class="col-lg-12 checkform-5">
               <hr style="border-width:5px; border-color:transparent;">
@@ -70,13 +68,7 @@
                     <label>Имя</label>
                     <span class='form-error'>{{ form.name.errors }}</span>
       <!--              <input type="text" name="{{ form.name.html_name }}" id = "name1" class='form-control' value='{{ request.POST.name }}'>-->
-                    <input type="text" id='name' name="{{ form.name.html_name }}" class='form-control' value='{{ request.POST.name }}' required placeholder="Введите ваше имя">
-                    <div class="valid-feedback">
-                      gavna v'ebal
-                    </div>
-                    <div class="invalid-feedback">
-                      gavno
-                    </div>
+                    <input type="text" id='name' name="name" class='form-control' value='{{ request.POST.name }}' required placeholder="Введите ваше имя">
                   </div>
                 </div>
 

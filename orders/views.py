@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from .models import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import CheckoutContactForm
 from django.contrib.auth.models import User
 from products.models import *
@@ -47,73 +47,93 @@ def basket_adding(request):
 
     return JsonResponse(return_dict)
 
+#  Отправка заказа через POST
 def checkoutprocess(request):
-    return_dict = dict()
     session_key = request.session.session_key
-    if request.user.is_authenticated:
-        products_in_basket = ProductInBasket.objects.filter(user=request.user, is_active=True)
-    else:
-        products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
     form = CheckoutContactForm(request.POST or None)
-    data = request.POST
-    print(data)
-    # print(form)
     if request.POST:
-        # print('da')
-        # print('valid')
-        data = request.POST
-        # print(data)
-        # test=data['id']
-        # print(test)
-        name = data.get('name')
-        phone = data['phone']
-        email = data.get('email')
-        # number = data['nmb']
-        kol = int(data['kol'])
-        j = 0
+        print(request.POST)
+        if form.is_valid():
+            data = request.POST
+            name = data.get("name")
+            phone = data["phone"]
+            email = data.get('email')
+            user, created = User.objects.get_or_create(username=phone, defaults={'first_name': name, 'email': email})
+            if user.email != email:
+                User.objects.filter(username=phone).update(email=email)
+            if user.first_name != name:
+                User.objects.filter(username=phone).update(first_name=name)
 
-        # id = data[str423]
-        # id_param=0
-        # nmb_param=0
-        # print(id)
-        # print(data)
-        user, created = User.objects.get_or_create(username=phone, defaults={'first_name': name, 'email':email})
-        if user.email != email:
-            User.objects.filter(username=phone).update(email=email)
+            order = Order.objects.create(user=user, customer_name=name, customer_email=email, status_id=1)
+            for name, value in data.items():
+                if name.startswith("product_in_basket"):
+                    product_in_basket_id = name.split("product_in_basket")[1]
+                    print(product_in_basket_id)
+                    product_in_basket = Product.objects.get(id=product_in_basket_id)
 
-        order = Order.objects.create(user=user, customer_name=name, customer_email=email, status_id=1)
-        for i in range(0, kol):
-            str_id = 'id[' + str(j) + ']'
-            str_nmb = 'nmb[' + str(j) + ']'
-            j = j + 1
-            # id_str = ''
-            # nmb_str=''
-            # while id[id_param] != '%':
-            #     id_str = id_str + id[id_param]
-            #     id_param = id_param + 1
-            # while number[nmb_param] != '%':
-            #     nmb_str = nmb_str + number[nmb_param]
-            #     nmb_param = nmb_param + 1
-            # id_param = id_param+1
-            # nmb_param = nmb_param+1
-            product_in_basket_id = int(data[str_id])
-            # print(product_in_basket_id)
-            product_in_basket = Product.objects.get(id=product_in_basket_id)
-            product_in_basket.nmb = int(data[str_nmb])
-            # print(product_in_basket.nmb)
+                    product_in_basket.nmb = value
+                    product_in_basket.order = order
+                    product_in_basket.save(force_update=True)
+                    ttl_price = product_in_basket.nmb * int(product_in_basket.price_with_discount)
 
-            product_in_basket.order = order
-            product_in_basket.save(force_update=True)
-            ttl_price=product_in_basket.nmb*product_in_basket.price
-            ProductInOrder.objects.create(product=product_in_basket, number=product_in_basket.nmb,
-                                          price_per_item=product_in_basket.price,
-                                          total_price=ttl_price, order=order)
-        if request.user.is_authenticated:
-            ProductInBasket.objects.filter(user=request.user, is_active=True).all().delete()
+                    ProductInOrder.objects.create(product=product_in_basket, number=product_in_basket.nmb,
+                                                  price_per_item=product_in_basket.price_with_discount,
+                                                  total_price=ttl_price,
+                                                  order=order)
+            if request.user.is_authenticated:
+                ProductInBasket.objects.filter(user=request.user, is_active=True).all().delete()
+            else:
+                ProductInBasket.objects.filter(session_key=session_key, is_active=True).all().delete()
         else:
-            ProductInBasket.objects.filter(session_key=session_key, is_active=True).all().delete()
+            print("not_valid")
+    return redirect('/')
 
-    return JsonResponse(return_dict)
+#  Отправка заказа через ajax
+# def checkoutprocess1(request):
+#     return_dict = dict()
+#     session_key = request.session.session_key
+#     if request.user.is_authenticated:
+#         products_in_basket = ProductInBasket.objects.filter(user=request.user, is_active=True)
+#     else:
+#         products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
+#     form = CheckoutContactForm(request.POST or None)
+#     data = request.POST
+#     print(data)
+#     if request.POST:
+#         data = request.POST
+#         name = data.get('name')
+#         phone = data['phone']
+#         email = data.get('email')
+#         # number = data['nmb']
+#         kol = int(data['kol'])
+#         j = 0
+#
+#         user, created = User.objects.get_or_create(username=phone, defaults={'first_name': name, 'email':email})
+#         if user.email != email:
+#             User.objects.filter(username=phone).update(email=email)
+#
+#         order = Order.objects.create(user=user, customer_name=name, customer_email=email, status_id=1)
+#         for i in range(0, kol):
+#             str_id = 'id[' + str(j) + ']'
+#             str_nmb = 'nmb[' + str(j) + ']'
+#             j = j + 1
+#             product_in_basket_id = int(data[str_id])
+#             #print(product_in_basket_id)
+#             product_in_basket = Product.objects.get(id=product_in_basket_id)
+#             product_in_basket.nmb = int(data[str_nmb])
+#             # print(product_in_basket.nmb)
+#             product_in_basket.order = order
+#             product_in_basket.save(force_update=True)
+#             ttl_price = product_in_basket.nmb * product_in_basket.price
+#             ProductInOrder.objects.create(product=product_in_basket, number=product_in_basket.nmb,
+#                                           price_per_item=product_in_basket.price,
+#                                           total_price=ttl_price, order=order)
+#         if request.user.is_authenticated:
+#             ProductInBasket.objects.filter(user=request.user, is_active=True).all().delete()
+#         else:
+#             ProductInBasket.objects.filter(session_key=session_key, is_active=True).all().delete()
+#
+#     return JsonResponse(return_dict)
 
 def checkout(request):
 
