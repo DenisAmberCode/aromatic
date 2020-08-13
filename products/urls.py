@@ -21,7 +21,7 @@ urlpatterns = [
     path('product/<product_id>/', views.product, name='product'),
     path('products/', views.products, name='products'),
     # path('category/<str:categoryInNavbar>/', views.productsFilterByCategoryInNavbar, name='productsFilterByCategoryInNavbar'),
-    path('category/<str:categoryInNavbar>/<str:category>/<int:page>/', views.productsFilterByCategory, name='productsFilterByCategory'),
-    path('category/<str:categoryInNavbar>/<str:category>/<str:subCategory>/<int:page>/', views.productsFilterBySubCategory, name='productsFilterBySubCategory'),
-    path('carousel/<str:carouselTitle>', views.productsInCarousel, name='productsInCarousel'),
+    path('category/specialCategories/<str:specialCategory>/', views.productsFilterBySpecialCategory, name='productsFilterBySpecialCategory'),
+    path('category/<str:categoryInNavbar>/<str:category>/', views.productsFilterByCategory, name='productsFilterByCategory'),
+    path('category/<str:categoryInNavbar>/<str:category>/<str:subCategory>/', views.productsFilterBySubCategory, name='productsFilterBySubCategory'),
 ]

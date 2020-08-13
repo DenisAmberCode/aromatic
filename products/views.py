@@ -28,83 +28,113 @@ def product(request, product_id):
     return render(request, 'products/product.html', locals())
 
 def products(request):
-    allProducts = ProductImg.objects.all()
+    allProducts = Product.objects.filter(is_active=True)
     return_dict = dict()
     return_dict["products"] = list()
-    for item in allProducts:
+    for product in allProducts:
         product_dict = dict()
-        product_dict["id"] = item.product.id
-        product_dict["name"] = item.product.name
-        product_dict["price"] = item.product.price_with_discount
-        product_dict["description"] = item.product.short_description
-        product_dict["image"] = item.image.url
+        product_dict["id"] = product.id
+        product_dict["name"] = product.name
+        product_dict["price"] = product.price_with_discount
+        product_dict["description"] = product.short_description
+        product_dict["image"] = ProductImg.objects.get(product__id=product.id, is_main=True).image.url
         return_dict["products"].append(product_dict)
 
     return JsonResponse(return_dict)
 
-def productsFilterByCategory(request, categoryInNavbar, category, page):
+def productsJsonResponse(allProducts, limit, page):
+    if allProducts == None:
+        return {"products": []}
+    productsCountAll = allProducts.count()
+    if page*limit > productsCountAll:
+        Products = allProducts[limit*(page-1):]  # Последняя страница товаров
+    else:
+        Products = allProducts[limit*(page-1):limit*page]
+
+    return_dict = dict()
+    return_dict["products"] = list()
+    for product in Products:
+        product_dict = dict()
+        product_dict["id"] = product.id
+        product_dict["name"] = product.name
+        product_dict["price"] = product.price_with_discount
+        product_dict["description"] = product.short_description
+        product_dict["image"] = ProductImg.objects.get(product__id=product.id, is_main=True).image.url
+        return_dict["products"].append(product_dict)
+    if page == 1:
+        return_dict["productsCountAll"] = productsCountAll
+
+    return return_dict
+
+def sortProducts(allProducts, sortParam):
+    if sortParam == 'price':
+        return allProducts.order_by('price')
+    elif sortParam == 'alphabet':
+        return allProducts.order_by('name')
+    elif sortParam == 'popularity':
+        return allProducts
+
+def productsFilterByCategory(request, categoryInNavbar, category):
+    page = int(request.GET.get('page', 0))
+    sortParam = request.GET.get('sort', '')
     limit = 4
-    allProducts = ProductImg.objects.filter(product__categoryInNavbar__nameEnglish=categoryInNavbar, product__category__nameEnglish=category)
-    productsCountAll = allProducts.count()
-    if page*limit > productsCountAll:
-        Products = allProducts[limit*(page-1):]  # Последняя страница товаров
-    else:
-        Products = allProducts[limit*(page-1):limit*page]
-
-    return_dict = dict()
-    return_dict["products"] = list()
-    for item in Products:
-        product_dict = dict()
-        product_dict["id"] = item.product.id
-        product_dict["name"] = item.product.name
-        product_dict["price"] = item.product.price_with_discount
-        product_dict["description"] = item.product.short_description
-        product_dict["image"] = item.image.url
-        return_dict["products"].append(product_dict)
-    if page == 1:
-        return_dict["productsCountAll"] = productsCountAll
-    return JsonResponse(return_dict)
-
-def productsFilterBySubCategory(request, categoryInNavbar, category, subCategory, page):
-    limit = 3
-    allProducts = ProductImg.objects.filter(product__categoryInNavbar__nameEnglish=categoryInNavbar, product__category__nameEnglish=category, product__subCategory__nameEnglish=subCategory)
-    productsCountAll = allProducts.count()
-    if page*limit > productsCountAll:
-        Products = allProducts[limit*(page-1):]  # Последняя страница товаров
-    else:
-        Products = allProducts[limit*(page-1):limit*page]
-
-    return_dict = dict()
-    return_dict["products"] = list()
-    for item in Products:
-        product_dict = dict()
-        product_dict["id"] = item.product.id
-        product_dict["name"] = item.product.name
-        product_dict["price"] = item.product.price_with_discount
-        product_dict["description"] = item.product.short_description
-        product_dict["image"] = item.image.url
-        return_dict["products"].append(product_dict)
-    if page == 1:
-        return_dict["productsCountAll"] = productsCountAll
+    allProducts = Product.objects.filter(categoryInNavbar__nameEnglish=categoryInNavbar, category__nameEnglish=category, is_active=True)
+    if sortParam != '':
+        allProducts = sortProducts(allProducts, sortParam)
+    return_dict = productsJsonResponse(allProducts, limit, page)
 
     return JsonResponse(return_dict)
 
-def productsInCarousel(request, carouselTitle):
-    if carouselTitle == "novently":
-        allProducts = ProductImg.objects.filter(product__is_novelty=True)
-    elif carouselTitle == "best-seller":
-        allProducts = ProductImg.objects.filter(product__is_best_seller=True)
-    elif carouselTitle == "exclusively-online":
-        allProducts = ProductImg.objects.filter(product__is_exclusively_online=True)
+def productsFilterBySubCategory(request, categoryInNavbar, category, subCategory):
+    page = int(request.GET.get('page', 0))
+    sortParam = request.GET.get('sort', '')
+    limit = 4
+    allProducts = Product.objects.filter(categoryInNavbar__nameEnglish=categoryInNavbar, category__nameEnglish=category, subCategory__nameEnglish=subCategory, is_active=True)
+    if sortParam != '':
+        allProducts = sortProducts(allProducts, sortParam)
+    return_dict = productsJsonResponse(allProducts, limit, page)
+
+    return JsonResponse(return_dict)
+
+def productsFilterBySpecialCategory(request, specialCategory):
+    page = int(request.GET.get('page', 0))
+    sortParam = request.GET.get('sort', '')
+    limit = 9
+    if specialCategory == "novently":
+        allEntries = Novelty.objects.filter(product__is_active=True)
+    elif specialCategory == "best-seller":
+        allEntries = BestSeller.objects.filter(product__is_active=True)
+    elif specialCategory == "exclusively-online":
+        allEntries = ExclusivelyOnline.objects.filter(product__is_active=True)
+    else:
+        allEntries = None
+
+    if sortParam == 'price':
+        allEntries = allEntries.order_by('product__price')
+    elif sortParam == 'alphabet':
+        allEntries = allEntries.order_by('product__name')
+    elif sortParam == 'popularity':
+        pass
+
+    if allEntries == None:
+        return {"products": []}
+    productsCountAll = allEntries.count()
+    if page*limit > productsCountAll:
+        Entries = allEntries[limit*(page-1):]  # Последняя страница товаров
+    else:
+        Entries = allEntries[limit*(page-1):limit*page]
+
     return_dict = dict()
     return_dict["products"] = list()
-    for item in allProducts:
+    for entry in Entries:
         product_dict = dict()
-        product_dict["id"] = item.product.id
-        product_dict["name"] = item.product.name
-        product_dict["price"] = item.product.price_with_discount
-        product_dict["description"] = item.product.short_description
-        product_dict["image"] = item.image.url
+        product_dict["id"] = entry.product.id
+        product_dict["name"] = entry.product.name
+        product_dict["price"] = entry.product.price_with_discount
+        product_dict["description"] = entry.product.short_description
+        product_dict["image"] = ProductImg.objects.get(product__id=entry.product.id, is_main=True).image.url
         return_dict["products"].append(product_dict)
+    if page == 1:
+        return_dict["productsCountAll"] = productsCountAll
 
     return JsonResponse(return_dict)

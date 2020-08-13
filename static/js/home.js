@@ -34,19 +34,19 @@ class NavbarMenu extends React.Component {
 				<div className="collapse navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav navbar_center">
 						<NavbarMenuItem     key={ 1 } title={ "Акции" } href={ "#" } />
-						<NavbarMenuDropdown key={ 2 } title={ "Парфюмерия" } href={ "/category/parfyumeriya" } categories={ [ 
-							{"title": "Женские ароматы", "subCats": [], "href": "/category/parfyumeriya/zhenskie-aromaty"}, 
-							{"title": "Мужские ароматы", "subCats": [], "href": "/category/parfyumeriya/muzskie-aromaty"}, 
-							{"title": "Нишевая парфюмерия", "subCats": [], "href": "/category/parfyumeriya/nishevaya-parfyuneriya"}, 
-							{"title": "Ароматерапия и свечи", "subCats": [], "href": "/category/parfyumeriya/aromaterapiya-i-svechi"}, 
-							{"title": "Парфюмерные наборы", "subCats": [], "href": "/category/parfyumeriya/parfyumernye-nabory"}
+						<NavbarMenuDropdown key={ 2 } title={ "Парфюмерия" } href={ "category/parfyumeriya" } categories={ [ 
+							{"title": "Женские ароматы", "subCats": [], "href": "category/parfyumeriya/zhenskie-aromaty"}, 
+							{"title": "Мужские ароматы", "subCats": [], "href": "category/parfyumeriya/muzskie-aromaty"}, 
+							{"title": "Нишевая парфюмерия", "subCats": [], "href": "category/parfyumeriya/nishevaya-parfyuneriya"}, 
+							{"title": "Ароматерапия и свечи", "subCats": [], "href": "category/parfyumeriya/aromaterapiya-i-svechi"}, 
+							{"title": "Парфюмерные наборы", "subCats": [], "href": "category/parfyumeriya/parfyumernye-nabory"}
 							] } />
-						<NavbarMenuDropdown key={ 3 } title={ "Макияж" } href={ "/category/makiyazh" } categories={ [ 
-							{"title": "Для лица", "subCats": [{"title":"Пудра", "href":"/category/makiyazhy/dlya-litsa/pudra"}, {"title":"Румяна", "href":"/category/makiyazhy/dlya-litsa/rumyana"}], "href": "/category/makiyazhy/dlya-litsa"}, 
-							{"title": "Для глаз", "subCats": [{"title":"Тушь для ресниц", "href":"/category/makiyazhy/dlya-glaz/tush-dlya-resnits"}, {"title":"Тени для век", "href":"/category/makiyazhy/dlya-glaz/teny-dlya-vek"}], "href": "/category/makiyazhy/dlya-glaz"}, 
-							{"title": "Для ногтей", "subCats": [{"title":"Лаки для ногтей", "href":"/category/makiyazhy/dlya-nogtey/laky-dlya-nogtey"}, {"title":"Накладные ногти", "href":"/category/makiyazhy/dlya-nogtey/nakladniye-nogty"}], "href": "/category/makiyazhy/dlya-nogtey"}, 
-							{"title": "Бля бровей", "subCats": [{"title":"Тени для бровей", "href":"/category/makiyazhy/dlya-brovey/teny-dlya-brivey"}, {"title":"Гель для бровей", "href":"/category/makiyazhy/dlya-brovey/gel-dlya-brovey"}], "href": "/category/makiyazhy/dlya-brovey"}, 
-							{"title": "Для губ", "subCats": [{"title":"Губная помада", "href":"/category/makiyazhy/dlya-gub/gubnaya-pomada"}, {"title":"Блеск для губ", "href":"/category/makiyazhy/dlya-gub/blesk-dlya-gub"}], "href": "/category/makiyazhy/dlya-gub"}
+						<NavbarMenuDropdown key={ 3 } title={ "Макияж" } href={ "category/makiyazh" } categories={ [ 
+							{"title": "Для лица", "subCats": [{"title":"Пудра", "href":"category/makiyazhy/dlya-litsa/pudra"}, {"title":"Румяна", "href":"category/makiyazhy/dlya-litsa/rumyana"}], "href": "category/makiyazhy/dlya-litsa"}, 
+							{"title": "Для глаз", "subCats": [{"title":"Тушь для ресниц", "href":"category/makiyazhy/dlya-glaz/tush-dlya-resnits"}, {"title":"Тени для век", "href":"category/makiyazhy/dlya-glaz/teny-dlya-vek"}], "href": "category/makiyazhy/dlya-glaz"}, 
+							{"title": "Для ногтей", "subCats": [{"title":"Лаки для ногтей", "href":"category/makiyazhy/dlya-nogtey/laky-dlya-nogtey"}, {"title":"Накладные ногти", "href":"category/makiyazhy/dlya-nogtey/nakladniye-nogty"}], "href": "category/makiyazhy/dlya-nogtey"}, 
+							{"title": "Бля бровей", "subCats": [{"title":"Тени для бровей", "href":"category/makiyazhy/dlya-brovey/teny-dlya-brivey"}, {"title":"Гель для бровей", "href":"category/makiyazhy/dlya-brovey/gel-dlya-brovey"}], "href": "category/makiyazhy/dlya-brovey"}, 
+							{"title": "Для губ", "subCats": [{"title":"Губная помада", "href":"category/makiyazhy/dlya-gub/gubnaya-pomada"}, {"title":"Блеск для губ", "href":"category/makiyazhy/dlya-gub/blesk-dlya-gub"}], "href": "category/makiyazhy/dlya-gub"}
 							] } />
 						<NavbarMenuDropdown key={ 4 } title={ "Уход за кожей" } href={ "#" } categories={ [ 
 							{"title": "Женские ароматы", "subCats": [], "href": "#"}, 
@@ -88,7 +88,7 @@ class NavbarMenu extends React.Component {
 						<NavbarMenuItem     key={ 11 } title={ "Бренды" } href={ "#" } />
 					</ul>
 					<ul className="navbar-nav">
-						<NavbarMenuBasket href={ "/checkout/" }/>
+						<NavbarMenuBasket href={ "checkout/" }/>
 					</ul>
 				</div>
 			</nav>
@@ -248,17 +248,23 @@ class Products extends React.Component {
 			productsCountAll: props.productsCountAll || 0,
 			title: props.title || null,
 			categoryPath: props.categoryPath || null,
+			sortingCategory: props.sortingCategory || 'popularity',
 	        error: null,
             isLoaded: false
 		}
 		this.getMoreProducts = this.getMoreProducts.bind(this);
+		this.sortProducts = this.sortProducts.bind(this);
 	}
 
 	getMoreProducts() {
 		if (this.state.products.length >= this.state.productsCountAll) {
 			return null
 		}
-		Query(`${ this.state.categoryPath }/${ this.state.pages + 1 }`)
+		let params = {
+			'page': this.state.pages + 1,
+			'sort': this.state.sortingCategory
+		}
+		Query(`${ this.state.categoryPath }`, params)
 			.then( (result) => {
 				if (result.products) {
 					if (result.products.length != 0) {
@@ -268,6 +274,36 @@ class Products extends React.Component {
 						    	error: null,
 					    		products: [...state.products, ...result.products],
 					    		pages: state.pages + 1
+					    	}
+					    })
+					}
+				}
+			})
+			.catch(error => {
+			  	this.setState({
+			        isLoaded: true,
+			        error: error.statusText
+			  	});
+			})
+	}
+
+	sortProducts(event) {
+		let sortingCategory = event.target.classList[0];
+		let params = {
+			'page': 1,
+			'sort': sortingCategory
+		}
+		Query(`${ this.state.categoryPath }`, params)
+			.then( (result) => {
+				if (result.products) {
+					if (result.products.length != 0) {
+					    this.setState((state) => {
+					    	return {
+						    	isLoaded: true,
+						    	error: null,
+					    		products: result.products,
+					    		pages: 1,
+					    		sortingCategory: sortingCategory
 					    	}
 					    })
 					}
@@ -291,10 +327,10 @@ class Products extends React.Component {
 			this.state.products.forEach((product) => {
 				children.push(<Product key={ product.id } product={ product } />);
 			});
-
 			return (
 				<React.Fragment>
 					<h2 className="products__title"><a href={ "#" } className="products__title_text">{ this.state.title }</a></h2>
+					<SortingProducts productsCountAll={ this.state.productsCountAll } sortingCategory={ this.state.sortingCategory } sortProducts={ this.sortProducts } />
 					<div className={ "products__wrapper" }>
 						{ children }
 					</div>
@@ -302,6 +338,54 @@ class Products extends React.Component {
 				</React.Fragment>
 			);
 		}
+	}
+}
+
+class SortingProducts extends React.Component {
+	constructor(props) {
+		super(props);
+		this.sortProducts = props.sortProducts;
+	}
+
+	render() { 
+		const sortingCategories = [
+			{'id': 1, 'className': 'popularity', 'title': 'по популярности'},
+			{'id': 2, 'className': 'price', 'title': 'по цене'},
+			{'id': 3, 'className': 'alphabet', 'title': 'по алфавиту'},
+		]
+		let children = [];
+		sortingCategories.forEach((category) => {
+			// Для выбранного компонента сортировки устанавливаем доп. класс sort_selected (color: #fe5101)
+			let className = (this.props.sortingCategory == category.className) ? `${ category.className } sort_selected` : category.className;
+			children.push(<SortingCategory key={ category.id } className={ className } title={ category.title } sortProducts={ this.sortProducts } />);
+		});
+		return(
+			<div className="info">
+				<div className="info__sort-box">
+					<div className="sort sort-wrapper">
+						{ children }
+					</div>
+				</div>
+				<div className="info__found">
+					<span>Найдено товаров:&nbsp;</span>
+					<span className="info__found_result">{ this.props.productsCountAll }</span>
+				</div>
+			</div>
+		);
+	}
+}
+
+class SortingCategory extends React.Component {
+	constructor(props) {
+		super(props);
+		this.title = props.title;
+		this.sortProducts = props.sortProducts;
+	}
+
+	render() {
+		return(
+			<div className={ this.props.className } onClick={ this.sortProducts } >{ this.title }</div>
+		)
 	}
 }
 
@@ -331,7 +415,6 @@ class ProductsCarousel extends React.Component {
 			name: props.name,
 			products: [],
 			title: props.title,
-			categoryPath: props.categoryPath,
 			href: props.href,
 	        error: null,
             isLoaded: false,
@@ -382,7 +465,11 @@ class ProductsCarousel extends React.Component {
 		}
 
 		// Получение товаров для карусели товаров
-		Query(this.state.categoryPath)
+		let params = {
+			'page': 1,
+			'sort': 'popularity'
+		}
+		Query(`${ this.state.href }`, params)
 			.then((response) => {
 	        	this.setState({
 		        	isLoaded: true,
@@ -419,7 +506,7 @@ class ProductsCarousel extends React.Component {
 			});
 			return (
 				<React.Fragment>
-					<h2 className="products__title"><a href={ this.state.href} className="products__title_text">{ this.state.title }</a></h2>
+					<h2 className="products__title"><a href={ this.state.href} className="products__title_text" onClick={ updateProducts } >{ this.state.title }</a></h2>
 					<div className={ "products__wrapper carousel " + this.state.name }>
 						{ children }
 					</div>
@@ -525,13 +612,13 @@ const CarouselImagesList = [
 ReactDOM.render(<ImagesCarousel images={ CarouselImagesList } />, $("#carouselTop")[0]);
 
 // Карусель товаров 1
-ReactDOM.render(<ProductsCarousel name={ "carousel1" } title={ "Новинки" } categoryPath={ "/carousel/novently" } href="" />, $("#carousel1")[0]);
+ReactDOM.render(<ProductsCarousel name={ "carousel1" } title={ "Новинки" } href="category/specialCategories/novently" />, $("#carousel1")[0]);
 
 // Карусель товаров 2
-ReactDOM.render(<ProductsCarousel name={ "carousel2" } title={ "Бестселлеры" } categoryPath={ "/carousel/best-seller" } href="" />, $("#carousel2")[0]);
+ReactDOM.render(<ProductsCarousel name={ "carousel2" } title={ "Бестселлеры" } href="category/specialCategories/best-seller" />, $("#carousel2")[0]);
 
 // Карусель товаров 3
-ReactDOM.render(<ProductsCarousel name={ "carousel3" } title={ "Эксклюзивно онлайн" } categoryPath={ "/carousel/exclusively-online" } href="" />, $("#carousel3")[0]);
+ReactDOM.render(<ProductsCarousel name={ "carousel3" } title={ "Эксклюзивно онлайн" } href="category/specialCategories/exclusively-online" />, $("#carousel3")[0]);
 
 // Товары выбранной категории (не отображаются при первом рендере)
 const products = ReactDOM.render(<Products products={ [] } />, $("#products")[0]);
@@ -541,11 +628,16 @@ const products = ReactDOM.render(<Products products={ [] } />, $("#products")[0]
 ReactDOM.render(<ButtonScrollUp />, $("#btnScrollUpWrapper")[0]);
 
 // Асинхронное получение товаров
-function Query(path) {
-	const url = 'http://192.168.0.101:8000'+path;
+function Query(path, params) {
+	const url = new URL('http://192.168.0.101:8000');
+	url.pathname += path;
 	const options = {
     	method: 'GET'
     }
+    for (let key in params) {
+      url.searchParams.set(key, params[key]);
+    }
+    console.log(url)
     return fetch(url, options)
 			.then((response) => {
 			    if (response.ok) {
@@ -560,8 +652,12 @@ function Query(path) {
 function updateProducts(event){
 	event.preventDefault();
 	let title = event.currentTarget.innerText;
-	let categoryPath = event.currentTarget.pathname;
-	Query(`${ categoryPath }/1`)
+	let categoryPath = event.currentTarget.pathname.slice(1);  // путь без / в начале
+	let params = {
+		'page': 1,
+		'sort': 'popularity'
+	}
+	Query(`${ categoryPath }`, params)
 		.then( (result) => {
 			if (result.products) {
 				if (result.products.length != 0) {
@@ -576,10 +672,12 @@ function updateProducts(event){
 				    	pages: 1,
 						productsCountAll: result.productsCountAll,
 				    	title: title,
-				    	categoryPath: categoryPath
+				    	categoryPath: categoryPath,
+				    	sortingCategory: 'popularity'
 				    });
 				}
 			}
+			$('html, body').animate({scrollTop:0}, 300);
 		})
 		.catch(error => {
 		  	products.setState({

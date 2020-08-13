@@ -37,8 +37,8 @@ def home(request):
     for i in products_in_favorites:
         list_products_in_favorites.append(i.product.id)
 
-    products_images = ProductImg.objects.filter(is_active=True, is_main=True, product__is_active=True)
-    products_images_category_1 = products_images.filter(product__category__id=1)
-    products_images_category_2 = products_images.filter(product__category__id=2)
-    products_images_category_3 = products_images.filter(product__category__id=3)
+    # products_images = ProductImg.objects.filter(is_active=True, is_main=True, product__is_active=True)
+    # products_images_category_1 = products_images.filter(product__category__id=1)
+    # products_images_category_2 = products_images.filter(product__category__id=2)
+    # products_images_category_3 = products_images.filter(product__category__id=3)
     return render(request, 'landing/home.html', locals())

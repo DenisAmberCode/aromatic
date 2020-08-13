@@ -149,6 +149,69 @@ body {
     color: #fe5101;
 }
 
+.info {
+    background-color: #fff;
+    padding-right: 15px;
+    height: 40px;
+    cursor: default;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info__sort-box {
+    text-align: left;
+    color: #828282;
+    position: relative;
+}
+
+.info__found, .info__sort-box {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.sort {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sort-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.sort-wrapper>div {
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    user-select: none;
+}
+
+.sort-wrapper>div:hover {
+	background-color: #f9f9f9;
+}
+
+.sort_selected {
+    color: #fe5101;
+}
+
+.info__found {
+    text-align: right;
+    color: #828282;
+}
+
+.info__found_result {
+    font-weight: 600;
+    padding-left: 10px;
+}
+
 .carousel__button {
 	line-height: 1em;
 	display: inline-block;
